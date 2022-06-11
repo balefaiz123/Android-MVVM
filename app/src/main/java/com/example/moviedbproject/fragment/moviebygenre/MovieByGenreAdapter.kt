@@ -9,8 +9,6 @@ import com.bumptech.glide.Glide
 import com.example.common.entity.movie_discover.Result
 import com.example.moviedbproject.databinding.MovieByGenreItemBinding
 
-
-
 class MovieByGenreAdapter(
     val navigateToDetails : (Int) -> Unit
 ) : PagingDataAdapter<Result, MovieByGenreViewHolder>(diffUtil) {
@@ -31,7 +29,8 @@ class MovieByGenreAdapter(
         val data = getItem(position)
         holder.binding.movieByGenre = data
         holder.binding.root.setOnClickListener {
-            data?.let { it1 -> navigateToDetails(it1.id) }
+            data?.let {
+                navigateToDetails(it.id) }
         }
         Glide.with(holder.binding.root)
             .load("https://image.tmdb.org/t/p/w500${data?.poster_path}")

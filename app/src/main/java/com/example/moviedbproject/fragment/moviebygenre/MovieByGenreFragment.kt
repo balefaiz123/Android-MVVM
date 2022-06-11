@@ -27,13 +27,8 @@ class MovieByGenreFragment : BaseFragment<MovieByGenreViewModel, MovieByGenreBin
 
     override fun initBinding(binding: MovieByGenreBinding) {
         super.initBinding(binding)
-
-        binding.recycler.adapter = adapter.withLoadStateFooter(stateAdapter)
-        vm.loadAllMovieByGenre(movieByGenreArgs.genreId)
-        vm.dataMovieByGenre.observe(this) {
-            CoroutineScope(Dispatchers.Main).launch {
-                adapter.submitData(it)
-            }
-        }
+        observeLiveData()
     }
 }
+
+

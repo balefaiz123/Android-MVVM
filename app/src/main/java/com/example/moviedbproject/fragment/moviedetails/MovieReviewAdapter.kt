@@ -12,7 +12,6 @@ import com.example.moviedbproject.databinding.MovieDetailsReviewItemBinding
 
 class MovieReviewAdapter : PagingDataAdapter<Result, MovieReviewViewHolder>(diffUtil) {
 
-
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<Result>() {
             override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
