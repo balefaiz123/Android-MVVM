@@ -5,11 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import com.example.api_service.usecase.MovieByGenreUseCase
-import com.example.common.entity.ResponseApp
-import com.example.common.entity.movie_discover.MovieDiscoverResponse
 import com.example.common.entity.movie_discover.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
-import id.indocyber.common.BaseViewModel
+import com.example.common.base.BaseViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

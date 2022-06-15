@@ -29,11 +29,9 @@ class GenreFragment : BaseFragment<GenreViewModel, GenreBinding>() {
         vm.loadAllGenre()
         observeLiveData()
         binding.nextButton.setOnClickListener {
-            findNavController().navigate(
-                GenreFragmentDirections.genreToMovieByGenre(
+                vm.navigate(GenreFragmentDirections.genreToMovieByGenre(
                     vm.selected.value.orEmpty().map { it.id }.joinToString(",")
-                )
-            )
+                ))
         }
     }
 

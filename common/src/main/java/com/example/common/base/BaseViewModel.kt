@@ -1,11 +1,9 @@
-package id.indocyber.common
+package com.example.common.base
 
 import android.app.Application
-import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import androidx.navigation.NavDirections
 import com.example.common.ext.SingleLiveEvent
-import kotlinx.coroutines.flow.MutableStateFlow
 
 open class BaseViewModel(application: Application) : AndroidViewModel(application) {
     val navigationtEvent = SingleLiveEvent<NavDirections>()
@@ -15,9 +13,4 @@ open class BaseViewModel(application: Application) : AndroidViewModel(applicatio
     fun navigate(nav: NavDirections) {
         navigationtEvent.postValue(nav)
     }
-
-    fun popBackStack() {
-        popBackStackEvent.postValue(Any())
-    }
-
 }

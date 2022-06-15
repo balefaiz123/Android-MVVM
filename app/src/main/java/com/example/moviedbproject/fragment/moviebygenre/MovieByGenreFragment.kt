@@ -19,7 +19,7 @@ class MovieByGenreFragment : BaseFragment<MovieByGenreViewModel, MovieByGenreBin
     override val layoutResourceId: Int = R.layout.movie_by_genre
 
     val adapter = MovieByGenreAdapter(){
-        findNavController().navigate(MovieByGenreFragmentDirections.movieByGenreToMovieDetails(it))
+        vm.navigate(MovieByGenreFragmentDirections.movieByGenreToMovieDetails(it))
     }
 
     val stateAdapter = DiscoverMovieStateAdapter()

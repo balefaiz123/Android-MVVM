@@ -14,7 +14,6 @@ import com.example.common.entity.ResponseApp
 import com.example.common.entity.ResponseError
 import com.example.common.entity.ResponseLoading
 import com.example.common.entity.ResponseSuccess
-import id.indocyber.common.BaseViewModel
 
 abstract class BaseFragment<VM : BaseViewModel, Binding : ViewDataBinding> : Fragment() {
 
