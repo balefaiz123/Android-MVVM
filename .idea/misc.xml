@@ -3,12 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Project/Android-MVVM/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.1" />
+        <entry key="..\:/Android Project/Android-MVVM/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Android Project/Android-MVVM/app/src/main/res/layout/genre.xml" value="0.20516304347826086" />
         <entry key="..\:/Android Project/Android-MVVM/app/src/main/res/layout/genre_item.xml" value="0.1272644927536232" />
+        <entry key="..\:/Android Project/Android-MVVM/app/src/main/res/layout/layout_loading.xml" value="0.1272644927536232" />
         <entry key="..\:/Android Project/Android-MVVM/app/src/main/res/layout/movie_by_genre.xml" value="0.20516304347826086" />
         <entry key="..\:/Android Project/Android-MVVM/app/src/main/res/layout/movie_by_genre_item.xml" value="0.20516304347826086" />
-        <entry key="..\:/Android Project/Android-MVVM/app/src/main/res/layout/movie_details.xml" value="0.2" />
-        <entry key="..\:/Android Project/Android-MVVM/app/src/main/res/layout/movie_details_review_item.xml" value="0.2" />
+        <entry key="..\:/Android Project/Android-MVVM/app/src/main/res/layout/movie_details.xml" value="0.22" />
+        <entry key="..\:/Android Project/Android-MVVM/app/src/main/res/layout/movie_details_review_item.xml" value="0.1" />
         <entry key="..\:/Android Project/Android-MVVM/app/src/main/res/layout/root.xml" value="0.1272644927536232" />
         <entry key="..\:/Android Project/MovieDBProject/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.1235" />
         <entry key="..\:/Android Project/MovieDBProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1235" />

@@ -1,6 +1,8 @@
 package com.example.moviedbproject.fragment.moviedetails
 
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -27,11 +29,12 @@ class MovieReviewAdapter : PagingDataAdapter<Result, MovieReviewViewHolder>(diff
     override fun onBindViewHolder(holder: MovieReviewViewHolder, position: Int) {
         val data = getItem(position)
         holder.binding.details = data
-        if (data?.author_details?.avatar_path != null){
+        data?.author_details?.avatar_path?.let {
             Glide.with(holder.binding.root)
-                .load("https://image.tmdb.org/t/p/w500${data?.author_details?.avatar_path}")
+                .load("https://image.tmdb.org/t/p/w500${it}")
                 .into(holder.binding.profileImage)
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieReviewViewHolder {
