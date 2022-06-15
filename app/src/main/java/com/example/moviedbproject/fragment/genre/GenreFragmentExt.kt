@@ -22,9 +22,10 @@ fun GenreFragment.observeLiveData() = with(vm) {
         },
         loading = {
             binding.loadingBar.visibility = View.VISIBLE
+            binding.button.visibility = View.GONE
         }
     )
-    this.selected.observe(this@observeLiveData){
+    selected.observe(this@observeLiveData){
         if (it.isEmpty()){
             binding.nextButton.visibility = View.GONE
         }else{
@@ -42,6 +43,3 @@ fun GenreFragment.toggleClick(genre: Genre) {
 fun GenreFragment.getSelected() : List<Genre>{
     return vm.selected.value.orEmpty()
 }
-
-//testclone
-

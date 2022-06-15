@@ -19,10 +19,10 @@ fun MovieDetailsFragment.observeLiveData() {
             binding.detail = movieDetails
             Glide.with(binding.root)
                 .load("https://image.tmdb.org/t/p/w500${it?.data?.backdrop_path}")
-                .into(binding.poster)
+                .into(binding.backdropImage)
             Glide.with(binding.root)
                 .load("https://image.tmdb.org/t/p/w500${it?.data?.poster_path}")
-                .into(binding.backdropImage)
+                .into(binding.posterImage)
         }
     }
 

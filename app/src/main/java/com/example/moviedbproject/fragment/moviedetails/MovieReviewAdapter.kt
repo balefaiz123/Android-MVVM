@@ -30,7 +30,7 @@ class MovieReviewAdapter : PagingDataAdapter<Result, MovieReviewViewHolder>(diff
         if (data?.author_details?.avatar_path != null){
             Glide.with(holder.binding.root)
                 .load("https://image.tmdb.org/t/p/w500${data?.author_details?.avatar_path}")
-                .into(holder.binding.image)
+                .into(holder.binding.profileImage)
         }
     }
 
