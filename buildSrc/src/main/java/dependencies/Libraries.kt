@@ -19,6 +19,7 @@ fun DependencyHandler.appLibraries() {
     okHttp()
     retrofit()
     glide()
+    youtube()
 //    koinKotlin("3.2.0-beta-1")
     NavGraph()
     gander()

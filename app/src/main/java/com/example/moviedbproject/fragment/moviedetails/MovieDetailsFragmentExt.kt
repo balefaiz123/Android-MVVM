@@ -1,67 +1,62 @@
 package com.example.moviedbproject.fragment.moviedetails
 
-import android.util.Log
+import android.view.View
 import com.bumptech.glide.Glide
-import com.example.moviedbproject.R
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
-import com.google.android.youtube.player.YouTubePlayerSupportFragmentX
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.DefaultPlayerUiController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-fun MovieDetailsFragment.observeLiveData(){
+fun MovieDetailsFragment.observeLiveData() {
     binding.recycler.adapter = adapter
     vm.loadMovieDetail(movieDetails.movieId)
 
-    vm.movieDetails.observe(this){
-        it.data?.let {movieDetails->
+    vm.movieDetails.observe(this) {
+        it.data?.let { movieDetails ->
             binding.detail = movieDetails
             Glide.with(binding.root)
                 .load("https://image.tmdb.org/t/p/w500${it?.data?.backdrop_path}")
                 .into(binding.poster)
+            Glide.with(binding.root)
+                .load("https://image.tmdb.org/t/p/w500${it?.data?.poster_path}")
+                .into(binding.backdropImage)
+        }
+    }
 
+    vm.movieTrailer.observe(this) {
+        try {
+            it.data?.results?.get(0)?.let { it1 ->
+                videoTrailer(it1.key)
+            }
+        } catch (e: Exception) {
+            binding.videoTrailer.visibility = View.GONE
         }
 
     }
 
-    vm.movieTrailer.observe(this){
-        it.data?.let {data->
-            videoTrailer(data.results[0].key)
-        }
-    }
-
-    vm.movieReview.observe(this){
+    vm.movieReview.observe(this) {
         CoroutineScope(Dispatchers.Main).launch {
             adapter.submitData(it)
         }
     }
 }
 
-fun MovieDetailsFragment.videoTrailer(videoId:String) {
-    val youtubeFragment = YouTubePlayerSupportFragmentX.newInstance()
-    with(parentFragmentManager) {
-        beginTransaction().apply {
-            add(R.id.video_trailer, youtubeFragment)
-            commit()
+fun MovieDetailsFragment.videoTrailer(videoId: String) {
+    val listener = object : AbstractYouTubePlayerListener() {
+
+        override fun onReady(youTubePlayer: com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer) {
+            super.onReady(youTubePlayer)
+            youTubePlayer.cueVideo(videoId, 0f)
+
+            val defaultPlayerUiController =
+                DefaultPlayerUiController(binding.videoTrailer, youTubePlayer)
+            binding.videoTrailer.setCustomPlayerUi(defaultPlayerUiController.rootView)
         }
     }
-    youtubeFragment.initialize("AIzaSyAUGz7-k_vZw9l0wxkH6ljA1GyfeArhgnY",
-        object : YouTubePlayerSupportFragmentX.OnInitializedListener() {
-            override fun onInitializationSuccess(
-                p0: YouTubePlayer.Provider?,
-                p1: YouTubePlayer?,
-                p2: Boolean
-            ) {
-                p1?.cueVideo(videoId)
-            }
 
-            override fun onInitializationFailure(
-                p0: YouTubePlayer.Provider?,
-                p1: YouTubeInitializationResult?
-            ) {
-                Log.e("youtubePlayer", "error ${p1?.name}")
-            }
-        })
+    val option = IFramePlayerOptions.Builder().controls(0).build()
+    binding.videoTrailer.initialize(listener, option)
 }
